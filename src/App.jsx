@@ -10,9 +10,10 @@ import Vender from './views/Vender'
 import Profile from './views/Profile'
 import Cart from './views/Cart'
 import { Route, Routes } from 'react-router-dom'
-import ApiProvider from './contexts/ApiProvider'
 import { UserContext } from './contexts/UserProvider'
+import ApiProvider from './contexts/ApiProvider'
 import SellProvider from './contexts/SellProvider'
+import CartProvider from './contexts/CartProvider'
 
 const App = () => {
   const {user} = useContext(UserContext)
@@ -20,20 +21,22 @@ const App = () => {
   return (
     <>
       <ApiProvider>
-        <SellProvider>
-          <Navbar />
-          <Routes >
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={user ? <Home /> : <Login />} />
-            <Route path="/register" element={user ? <Home /> : <Register />} />
-            <Route path="/libros" element={<Libros />} />
-            <Route path="/vender" element={user ? <Vender /> : <Login />} />
-            {/*<Route path="/instrucciones" element={<Instrucciones />} />*/}
-            <Route path="/profile" element={user ? <Profile /> : <Login />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-          <Footer />
-        </SellProvider>
+        <CartProvider>
+          <SellProvider>
+            <Navbar />
+            <Routes >
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={user ? <Home /> : <Login />} />
+              <Route path="/register" element={user ? <Home /> : <Register />} />
+              <Route path="/libros" element={<Libros />} />
+              <Route path="/vender" element={user ? <Vender /> : <Login />} />
+              {/*<Route path="/instrucciones" element={<Instrucciones />} />*/}
+              <Route path="/profile" element={user ? <Profile /> : <Login />} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+            <Footer />
+          </SellProvider>
+        </CartProvider>
       </ApiProvider>
     </>
   )

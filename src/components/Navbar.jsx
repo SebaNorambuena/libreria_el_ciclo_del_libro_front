@@ -2,11 +2,13 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../assets/img/logo.webp'
 import { UserContext } from '../contexts/UserProvider'
+import { CartContext } from '../contexts/CartProvider'
 import { useContext } from 'react'
 
 
 
 const Navbar = () => {
+  const { total } = useContext(CartContext)
   const isActiveClass = ({ isActive }) => (isActive ? 'text-white' : 'text-black')
   const { user,logoutUser } = useContext(UserContext)
   console.log(user);
@@ -56,7 +58,9 @@ const Navbar = () => {
                 <p className="bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-500 hover:cursor-pointer w-[110px] h-[25px] text-center">Inicia sesión</p>
               </NavLink>
               }
-              <NavLink to="/cart" className={isActiveClass}><i className="fa-solid fa-cart-shopping hover:text-white"></i></NavLink>
+              <NavLink to="/cart" className={isActiveClass}>
+                <p className='hover:text-white'><i className="fa-solid fa-cart-shopping"></i> $ {total}</p>
+              </NavLink>
             </div>
             </div>
           </div>

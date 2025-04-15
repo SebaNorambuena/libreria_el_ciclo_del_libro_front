@@ -21,6 +21,10 @@ const Register = () => {
             alert("La contraseña debe tener al menos 6 caracteres")
         } else {
             registerUser(e, username.value, email.value, password.value)
+            username.reset()
+            email.reset()
+            password.reset()
+            vpassword.reset()
         }
     }
 
