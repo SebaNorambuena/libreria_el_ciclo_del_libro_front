@@ -23,7 +23,7 @@ const Home = () => {
           }
         </div>
         <Link to="/libros">
-          <button className="bg-purple-900 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-800 hover:cursor-pointer">
+          <button className="bg-purple-600 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-500 hover:cursor-pointer">
             Ver mas
           </button>
         </Link>

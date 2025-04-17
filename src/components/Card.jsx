@@ -11,7 +11,7 @@ const Card = ({ book }) => {
         <>
             <div className="max-w-sm bg-navfot-color border border-pink-300 rounded-lg shadow-sm">
                 <a href="#">
-                    <img className="p-3" src="https://images.unsplash.com/photo-1580501170888-80668882ca0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80" alt="" />
+                    <img className="p-2 w-[50vh] h-[60vh] rounded-lg m-auto" src={book.img} alt="" />
                 </a>
                 <div className="p-5">
                     <a href="#">

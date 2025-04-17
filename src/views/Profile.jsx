@@ -22,31 +22,15 @@ const Profile = () => {
                         />
                         <div className='flex flex-col gap-5 items-center sm:items-start'>
                             <p className="text-2xl font-bold">{user.username}</p>
-                            <button className='bg-purple-900 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-800'>
-                            Cambiar imagen
+                            <button className='bg-purple-600 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-500 hover:cursor-pointer'>
+                                Editar perfil
                             </button>
                         </div>
                     </div>
-                    <input type="text" className="bg-gray-200 text-black rounded-lg px-4 py-2" value={user.email} readOnly />
-                    <form className="flex flex-col gap-5">
-                        <p className="font-bold">Cambiar contraseña</p>
-                        <input type="password" className="bg-gray-200 text-black rounded-lg px-4 py-2" placeholder="Contraseña nueva" />
-                        <input type="password" className="bg-gray-200 text-black rounded-lg px-4 py-2" placeholder="Repetir contraseña" />
-                        <button className="bg-purple-900 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-800" type="submit">
-                            Cambiar contraseña
-                        </button>
-                    </form>
                 </div>
 
                 {/* favoritos */}
                 <div className="flex flex-col gap-5 col-span-1 lg:col-span-3">
-                    <h1 className="text-3xl font-bold text-center text-black">Tus libros en venta</h1>
-                    <div className="flex flex-wrap gap-5 justify-center">
-                        {books.map((book) => (
-                            <Card key={book.id} book={book} />
-                        ))}
-                    </div>
-
                     <h1 className="text-3xl font-bold text-center text-black">Tus favoritos</h1>
                     <div className="flex flex-wrap gap-5 justify-center">
                         {books.map((book) => (

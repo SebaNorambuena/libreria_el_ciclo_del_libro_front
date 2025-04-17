@@ -16,7 +16,7 @@ const UserProvider = ({ children }) => {
         e.preventDefault()
         try {
             const response = await axios.post(
-                'http://localhost:3000/api/v1/auth/register',
+                import.meta.env.VITE_API_URL + '/api/v1/auth/register',
                 {
                     username,
                     email,
@@ -47,7 +47,7 @@ const UserProvider = ({ children }) => {
         e.preventDefault()
         try {
             const response = await axios.post(
-                'http://localhost:3000/api/v1/auth/login',
+                import.meta.env.VITE_API_URL + '/api/v1/auth/login',
                 {
                     username,
                     password,
@@ -73,7 +73,7 @@ const UserProvider = ({ children }) => {
         const token = localStorage.getItem('token')
         if (!token) return;
     
-        fetch('http://localhost:3000/api/v1/auth/me', {
+        fetch(import.meta.env.VITE_API_URL + '/api/v1/auth/me', {
             headers: {
                 Authorization: `Bearer ${token}`
             }

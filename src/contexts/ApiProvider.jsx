@@ -5,9 +5,10 @@ import axios from 'axios'
 export const ApiContext = createContext()
 
 const ApiProvider = ({children}) => {
+
     const [books, setBooks] = useState([])
 
-    const url = "http://localhost:3000/api/v1/books"
+    const url = import.meta.env.VITE_API_URL + "/api/v1/books"
 
     const getApi = async () => {
         try {

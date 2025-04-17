@@ -37,7 +37,7 @@ const Register = () => {
                     <input className="bg-gray-200 text-black rounded-lg px-4 py-2" type="text" placeholder="Ingresa tu email" {...email} />
                     <input className="bg-gray-200 text-black rounded-lg px-4 py-2" type="password" placeholder="Ingresa una contraseña" {...password} />
                     <input className="bg-gray-200 text-black rounded-lg px-4 py-2" type="password" placeholder="Repite la contraseña" onChange={(e) => setVpassword(e.target.value)}/>
-                    <button className="bg-purple-900 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-800 hover:cursor-pointer" type="submit">
+                    <button className="bg-purple-600 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-500 hover:cursor-pointer" type="submit">
                         Registrar
                     </button>
                 </form>

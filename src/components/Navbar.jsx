@@ -8,10 +8,12 @@ import { useContext } from 'react'
 
 
 const Navbar = () => {
-  const { total } = useContext(CartContext)
+  const { total, cart } = useContext(CartContext)
   const isActiveClass = ({ isActive }) => (isActive ? 'text-white' : 'text-black')
   const { user,logoutUser } = useContext(UserContext)
-  console.log(user);
+
+  console.log(cart.length)
+
     return (
       <>
         <nav className="bg-navfot-color text-black mx-auto">
@@ -32,8 +34,8 @@ const Navbar = () => {
               <div className="flex gap-5">
                 <NavLink to="/libros" className={isActiveClass}><p className="hover:text-white">Todos los libros</p></NavLink>
                   { user ?
-                    <NavLink to="/" className={isActiveClass}></NavLink> :
-                    <NavLink to="/vender" className={isActiveClass}></NavLink>
+                    <NavLink to="/vender" className={isActiveClass}><p className="hover:text-white">Publicar Libro</p></NavLink> :
+                    <NavLink to="/vender" className={isActiveClass}><p></p></NavLink>
                   }
               </div>
             </div>
@@ -49,14 +51,14 @@ const Navbar = () => {
               : 
               <NavLink to="/register" className={isActiveClass}><p className="hover:text-white">Registrate</p></NavLink>
               }
-              {user ? 
-              <NavLink to="/" className={isActiveClass} onClick={() => logoutUser()}>
-                <p className="hover:text-white">Cerrar sesión</p>
-              </NavLink> 
-              : 
-              <NavLink to="/login" className={isActiveClass}>
-                <p className="bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-500 hover:cursor-pointer w-[110px] h-[25px] text-center">Inicia sesión</p>
-              </NavLink>
+              {user ?
+                <NavLink to="/" className={isActiveClass} onClick={() => logoutUser()}>
+                  <p className="hover:text-white">Cerrar sesión</p>
+                </NavLink> 
+                : 
+                <NavLink to="/login" className={isActiveClass}>
+                  <p className="bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-500 hover:cursor-pointer w-[110px] h-[25px] text-center">Inicia sesión</p>
+                </NavLink>
               }
               <NavLink to="/cart" className={isActiveClass}>
                 <p className='hover:text-white'><i className="fa-solid fa-cart-shopping"></i> $ {total}</p>

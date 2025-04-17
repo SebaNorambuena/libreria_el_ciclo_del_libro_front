@@ -6,7 +6,7 @@ export const SellContext = createContext()
 const SellProvider = ({children}) => {
     const sellBook = async (name, author, category, img, price, description, vendedor) => {
         try {
-            const response = await axios.post('http://localhost:3000/api/v1/sell_books',
+            const response = await axios.post(import.meta.env.VITE_API_URL +'/api/v1/sell_books',
                 {
                     name,
                     author,

@@ -17,12 +17,12 @@ const Login = ()=>{
     
     return(
         <>
-            <div className="flex flex-col gap-5 w-[100%] p-3 justify-center items-center">
+            <div className="flex flex-col gap-5 w-[100%] p-3 justify-center items-center h-[70vh]">
                 <h1 className="text-6xl font-bold text-center text-black">Inicia sesión</h1>
                 <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                     <input className="bg-gray-200 text-black rounded-lg px-4 py-2" type="text" placeholder="Ingresa tu usuario" {...username} />
                     <input className="bg-gray-200 text-black rounded-lg px-4 py-2" type="password" placeholder="Ingresa tu contraseña" {...password} />
-                    <button className="bg-purple-900 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-800 hover:cursor-pointer" type="submit">
+                    <button className="bg-purple-600 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-500 hover:cursor-pointer" type="submit">
                         Iniciar sesion
                     </button>
                 </form>
