@@ -11,8 +11,12 @@ const Home = () => {
     <>
       <div className="flex flex-col items-center justify-center gap-5 m-5">
         <Carrusel />
-        <h1 className="text-4xl font-bold text-center text-black">Productos destacados</h1>
-        <div className="flex flex-wrap justify-between gap-5">
+        <h1 className="text-4xl font-bold text-center text-black">
+          <i className="fa-solid fa-star text-yellow-500"></i>
+          Productos destacados
+          <i className="fa-solid fa-star text-yellow-500"></i>
+        </h1>
+        <div className="flex flex-wrap justify-evenly gap-5 m-5">
           {
             books.map((book) => (
               <Card 

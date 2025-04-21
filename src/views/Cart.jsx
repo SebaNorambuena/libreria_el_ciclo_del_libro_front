@@ -9,28 +9,28 @@ const Cart = () => {
     return (
         <>
             <h1 className="text-4xl font-bold text-center text-black m-5">Tu carrito</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-3 text-black w-[90%] mx-auto h-[50vh]">
+            <div className="p-3 text-black flex flex-col items-center gap-5">
                 { cart.length > 0 ?
                     cart.map((cart) => (
-                        <div className="flex flex-wrap gap-5 col-span-3 justify-around bg-gray-200 rounded-lg p-5 mb-5">
-                            <img src="https://images.unsplash.com/photo-1580501170888-80668882ca0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80" alt="" className="w-60 h-60" />
-                            <div className="flex flex-col gap-5 justify-between">
-                                <div className="flex flex-col gap-5">
-                                    <p className="text-2xl font-bold">Nombre del libro</p>
-                                    <p className="text-2xl">{cart.name}</p>
+                        <div className="flex flex-wrap gap-4 p-5 bg-gray-200 rounded-lg justify-center w-[80vh]">
+                            <img src={cart.img} alt="" className="w-[20vh] h-[25vh] rounded-lg" />
+                            <div className="flex flex-col gap-5">
+                                <div className="flex flex-col">
+                                    <p className="font-bold">Nombre del libro</p>
+                                    <p>{cart.name}</p>
                                 </div>
                                 <p className="text-2xl text-red-500 hover:text-red-700 hover:cursor-pointer"><i className="fa-solid fa-trash" onClick={()=>removeFromCart(cart)}></i></p>
                             </div>
-                            <div className="flex flex-col gap-5">
-                                <p className="text-2xl font-bold">Precio</p>
-                                <p className="text-2xl">$ {cart.price}</p>
+                            <div className="flex flex-col">
+                                <p className="font-bold">Precio</p>
+                                <p>$ {cart.price}</p>
                             </div>
                         </div>
                     )) :
-                <div className='flex flex-col gap-5 justify-center items-center'>
-                    <p className='text-center text-black text-2xl font-bold'>No hay articulos en el carrito</p>
-                </div>
-                }
+                        <div className='flex flex-col gap-5 justify-center items-center h-[50vh]'>
+                            <p className='text-center text-black text-2xl font-bold'>No hay articulos en el carrito</p>
+                        </div>
+                    }
                 {cart.length > 0 ?
                 <div className="flex flex-col gap-5 justify-center items-center">
                     <p className="text-3xl">Total</p>

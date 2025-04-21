@@ -8,19 +8,13 @@ const useInput = (initialValue) => {
         setValue(e.target.value)
     }
 
-    const reset = () => {
+    const clean = () => {
         setValue(initialValue)
     }
 
-    return {
-    value,
-    onChange: handleChange,
-    reset,
-    bind: {
-        value,
-        onChange: handleChange,
-    }
-    }
+    const inputProps = { value, onChange: handleChange }
+
+    return [inputProps, { clean }]
 }
 
 

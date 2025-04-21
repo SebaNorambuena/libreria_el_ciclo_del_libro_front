@@ -7,12 +7,12 @@ import { SellContext } from '../contexts/SellProvider'
 const Vender = () => {
     const {sellBook} = useContext(SellContext)
     const { user } = useContext(UserContext)
-    const name = useInput("")
-    const author = useInput("")
-    const category = useInput("")
-    const img = useInput("")
-    const price = useInput(0)
-    const description = useInput("")
+    const [name, nameControl] = useInput("")
+    const [author, authorControl] = useInput("")
+    const [category, categoryControl] = useInput("")
+    const [img, imgControl] = useInput("")
+    const [price, priceControl] = useInput("")
+    const [description, descriptionControl] = useInput("")
     const vendedor = user?.username || "anónimo"
 
     const validarInput = (e) => {
@@ -21,12 +21,12 @@ const Vender = () => {
             alert("Debes llenar todos los campos")
         } else {
             sellBook(name.value, author.value, category.value, img.value, Number(price.value), description.value, vendedor)
-            name.reset()
-            author.reset()
-            category.reset()
-            img.reset()
-            price.reset()
-            description.reset()
+            nameControl.clean()
+            authorControl.clean()
+            categoryControl.clean()
+            imgControl.clean()
+            priceControl.clean()
+            descriptionControl.clean()
         }
     }
 

@@ -7,9 +7,9 @@ import { UserContext } from "../contexts/UserProvider"
 const Register = () => {
     const {registerUser} = useContext(UserContext)
     const [vpassword, setVpassword] = useState("")
-    const username = useInput("")
-    const email = useInput("")
-    const password = useInput("")
+    const [username, usernameControl] = useInput("")
+    const [email, emailControl] = useInput("")
+    const [password, passwordControl] = useInput("")
     
     const validarInput = (e) => {
         e.preventDefault()
@@ -21,10 +21,9 @@ const Register = () => {
             alert("La contraseña debe tener al menos 6 caracteres")
         } else {
             registerUser(e, username.value, email.value, password.value)
-            username.reset()
-            email.reset()
-            password.reset()
-            vpassword.reset()
+            usernameControl.clean()
+            emailControl.clean()
+            passwordControl.clean()
         }
     }
 

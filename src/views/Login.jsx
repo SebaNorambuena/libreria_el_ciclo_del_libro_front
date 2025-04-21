@@ -5,14 +5,15 @@ import useInput from "../hooks/UseInput"
 
 const Login = ()=>{
     const {loginUser} = useContext(UserContext)
-    const username = useInput("")
-    const password = useInput("")
+    const [username, usernameControl] = useInput("")
+    const [password, passwordControl] = useInput("")
+    console.log(username,password)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         loginUser(e, username.value, password.value)
-        username.reset()
-        password.reset()
+        usernameControl.clean()
+        passwordControl.clean()
     }
     
     return(
