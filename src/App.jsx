@@ -6,7 +6,6 @@ import Register from './views/Register'
 import Footer from './components/Footer'
 import Libros from './views/Libros'
 import Vender from './views/Vender'
-//import Instrucciones from './views/Instrucciones'
 import Profile from './views/Profile'
 import Cart from './views/Cart'
 import { Route, Routes } from 'react-router-dom'
@@ -30,7 +29,6 @@ const App = () => {
               <Route path="/register" element={user ? <Home /> : <Register />} />
               <Route path="/libros" element={<Libros />} />
               <Route path="/vender" element={user ? <Vender /> : <Login />} />
-              {/*<Route path="/instrucciones" element={<Instrucciones />} />*/}
               <Route path="/profile" element={user ? <Profile /> : <Login />} />
               <Route path="/cart" element={<Cart />} />
             </Routes>
