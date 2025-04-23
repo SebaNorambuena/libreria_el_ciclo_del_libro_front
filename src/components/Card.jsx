@@ -16,10 +16,10 @@ const Card = ({ book }) => {
                         <div className="p-5">
                             <Link to={`/libros/${book.id}`}>
                                 <h5 className="mb-2 font-bold text-black">{book.name}</h5>
-                                <p className="mb-3 font-normal text-black">Valor: $<span className="font-bold">{book.price}</span></p>
+                                <p className="mb-3 font-normal text-black">$<span className="font-bold">{book.price}</span></p>
                             </Link>
                         <button className="bg-purple-600 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-500 hover:cursor-pointer" onClick={() => addToCart(book)}>
-                            Add to cart
+                            Agregar
                         </button>
                         {/*<i className="fa-solid fa-heart text-white mt-2 text-2xl hover:cursor-pointer hover:text-3xl"></i>*/}
                     </div>

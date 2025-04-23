@@ -10,7 +10,9 @@ const Home = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-5 m-5">
-        <Carrusel />
+        <div className='w-[70%] m-auto cursor-pointer'>
+          <Carrusel />
+        </div>
         <h1 className="text-4xl font-bold text-center text-black">
           <i className="fa-solid fa-star text-yellow-500"></i>
           Productos destacados
