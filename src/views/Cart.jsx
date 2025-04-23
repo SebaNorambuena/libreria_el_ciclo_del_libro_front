@@ -4,7 +4,7 @@ import { UserContext } from '../contexts/UserProvider'
 import { useContext } from 'react'
 
 const Cart = () => {
-    const { cart, removeFromCart, total } = useContext(CartContext)
+    const { cart, removeFromCart, total, pagoTotal, setCart } = useContext(CartContext)
     const { user } = useContext(UserContext)
     return (
         <>
@@ -12,7 +12,7 @@ const Cart = () => {
             <div className="p-3 text-black flex flex-col items-center gap-5">
                 { cart.length > 0 ?
                     cart.map((cart) => (
-                        <div className="flex flex-wrap gap-4 p-5 bg-gray-200 rounded-lg justify-center w-[80vh]">
+                        <div key={cart.id} className="flex flex-wrap gap-4 p-5 bg-gray-200 rounded-lg justify-center w-[80vh]">
                             <img src={cart.img} alt="" className="w-[20vh] h-[25vh] rounded-lg" />
                             <div className="flex flex-col gap-5">
                                 <div className="flex flex-col">
@@ -36,7 +36,10 @@ const Cart = () => {
                     <p className="text-3xl">Total</p>
                     <p className="text-3xl font-bold">$ {total}</p>
                     {user ?
-                    <button className="bg-purple-600 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-500 hover:cursor-pointer" type="submit">
+                    <button onClick={() => {
+                        alert("Pago exitoso")
+                        setCart([])
+                    }} className="bg-purple-600 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-500 hover:cursor-pointer" type="submit">
                         Finalizar compra
                     </button>:
                     <button className="bg-gray-600 text-white rounded-lg px-4 py-2 font-bold" type="submit" disabled>

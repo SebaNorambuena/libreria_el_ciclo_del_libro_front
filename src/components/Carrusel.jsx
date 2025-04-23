@@ -4,9 +4,9 @@ import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa"
 
 const Carrusel = () => {
     const slides = [
-        'https://i.ibb.co/LD1JF1Qf/carrusel1.png',
-        'https://i.ibb.co/LD1JF1Qf/carrusel1.png',
-        'https://i.ibb.co/LD1JF1Qf/carrusel1.png',  
+        'https://i.ibb.co/LD1JF1Qf/carrusel1.png', // imagen 1
+        'https://i.ibb.co/LD1JF1Qf/carrusel1.png', // imagen 2
+        'https://i.ibb.co/LD1JF1Qf/carrusel1.png', // imagen 3
     ]
 
     const [current, setCurrent] = useState(0)
@@ -25,10 +25,10 @@ const Carrusel = () => {
         <>
             <div className='overflow-hidden relative'>
                 <div 
-                className={`flex transition ease-out duration-40`} 
+                className={`flex transition ease-out duration-800`} 
                 style={{ transform: `translateX(-${current * 100}%)`}}>
-                    {slides.map((s) => {
-                        return <img src={s}/>
+                    {slides.map((s, index) => {
+                        return <img key={`${s}-${index}`} src={s}/>
                     })}
                 </div>
                 <div className='absolute top-0 w-full h-full flex justify-between items-center px-10 text-3xl'>
