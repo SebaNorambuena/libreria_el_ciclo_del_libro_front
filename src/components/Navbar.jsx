@@ -35,15 +35,11 @@ const Navbar = () => {
         <div className={`${menuOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto`} id="navbar-default">
           <div className="flex flex-col md:flex-row gap-5">
             <NavLink to="/libros" className={isActiveClass}><p className="hover:text-white">Todos los libros</p></NavLink>
-            {Array.isArray(user) && user.map((u) => {
-              if (u.isadmin) {
-                console.log(u.isadmin)
-              return (
-                <div key={u.id}>
-                  <NavLink to="/vender" className={isActiveClass}><p className="hover:text-white">Publicar Libro</p></NavLink>
-                </div>
-              )}
-            })}
+            {user && user.isadmin && (
+              <div>
+                <NavLink to="/vender" className={isActiveClass}><p className="hover:text-white">Publicar Libro</p></NavLink>
+              </div>
+            )}
             {user ? (
               <NavLink to="/profile" className={isActiveClass}>
                 <div className="flex items-center gap-1 hover:text-white">
