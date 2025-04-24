@@ -13,6 +13,8 @@ const Vender = () => {
     const [img, imgControl] = useInput("")
     const [price, priceControl] = useInput("")
     const [description, descriptionControl] = useInput("")
+    const [stock, stockControl] = useInput("")
+    const [vendidos, vendidosControl] = useInput("")
     const vendedor = user?.username || "anónimo"
 
     const validarInput = (e) => {
@@ -20,13 +22,15 @@ const Vender = () => {
         if (!name.value || !author.value || !category.value || !img.value || !price.value || !description.value) {
             alert("Debes llenar todos los campos")
         } else {
-            sellBook(name.value, author.value, category.value, img.value, Number(price.value), description.value, vendedor)
+            sellBook(name.value, author.value, category.value, img.value, Number(price.value), description.value, stock.value, vendidos.value)
             nameControl.clean()
             authorControl.clean()
             categoryControl.clean()
             imgControl.clean()
             priceControl.clean()
             descriptionControl.clean()
+            stockControl.clean()
+            vendidosControl.clean()
         }
     }
 
@@ -42,6 +46,8 @@ const Vender = () => {
                     <input className="bg-gray-200 text-black rounded-lg px-4 py-2" type="text" placeholder="Imagen del libro" {...img} />
                     <input className="bg-gray-200 text-black rounded-lg px-4 py-2" type="number" placeholder="Precio del libro" {...price} />
                     <input className="bg-gray-200 text-black rounded-lg px-4 py-2" type="text" placeholder="Descripción del libro" {...description} />
+                    <input className="bg-gray-200 text-black rounded-lg px-4 py-2" type="number" placeholder="Cantidad de libros vendidos" {...stock} />
+                    <input className="bg-gray-200 text-black rounded-lg px-4 py-2" type="number" placeholder="Cantidad de libros vendidos" {...vendidos} />
                     <button className="bg-purple-900 text-white rounded-lg px-4 py-2 font-bold hover:bg-purple-800 hover:cursor-pointer" type="submit">
                         Publicar
                     </button>

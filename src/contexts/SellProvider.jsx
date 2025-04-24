@@ -4,7 +4,7 @@ import { createContext, useState } from 'react'
 export const SellContext = createContext()
 
 const SellProvider = ({children}) => {
-    const sellBook = async (name, author, category, img, price, description, vendedor) => {
+    const sellBook = async (name, author, category, img, price, description, stock, vendidos) => {
         try {
             const response = await axios.post(import.meta.env.VITE_API_URL +'/api/v1/sell_books',
                 {
@@ -14,7 +14,8 @@ const SellProvider = ({children}) => {
                     img,
                     price,
                     description,
-                    vendedor
+                    stock,
+                    vendidos
                 },
                 {
                     headers: {
