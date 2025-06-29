@@ -7,7 +7,6 @@ const Login = ()=>{
     const {loginUser} = useContext(UserContext)
     const [username, usernameControl] = useInput("")
     const [password, passwordControl] = useInput("")
-    console.log(username,password)
 
     const handleSubmit = (e) => {
         e.preventDefault()

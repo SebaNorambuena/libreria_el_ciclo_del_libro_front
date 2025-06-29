@@ -1,91 +1,97 @@
-import React from 'react'
 import { createContext, useState, useEffect } from 'react'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 export const UserContext = createContext()
 
 const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [username, setUsername] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
     const navigate = useNavigate()
 
-    const registerUser = async (e, username, email, password) => {
+    const urlMe = import.meta.env.VITE_API_URL + '/api/v1/auth/me'
+    const urlRegister = import.meta.env.VITE_API_URL + '/api/v1/auth/register'
+    const urlLogin = import.meta.env.VITE_API_URL + '/api/v1/auth/login'
+
+    const registerUser = (e, username, email, password) => {
         e.preventDefault()
-        try {
-            const response = await axios.post(
-                import.meta.env.VITE_API_URL + '/api/v1/auth/register',
-                {
+        fetch(urlRegister,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
                     username,
                     email,
                     password
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-    
-            const data = response.data
-            if (data?.error) {
-                alert(data.error)
-              } else {
-                alert('Usuario registrado correctamente')
-                navigate('/login')
+                })
             }
-            //localStorage.setItem("token", data.token)
-            //setUser(data)
-        } catch (error) {
-            console.error(error.response?.data || error.message)
-        }
+        )
+        .then((data) => {
+            if (!data.ok) {
+                throw new Error('Invalid data')
+            }
+            alert('Usuario registrado correctamente')
+            navigate('/login')
+        })
+        .catch((err) => {
+            console.error(err)
+            alert(err.message)
+        })
+        
     }
 
-    const loginUser = async (e, username, password) => {
+    const loginUser = (e, username, password) => {
         e.preventDefault()
-        try {
-            const response = await axios.post(
-                import.meta.env.VITE_API_URL + '/api/v1/auth/login',
-                {
-                    username,
-                    password,
+        fetch(urlLogin,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                }
-            )
-    
-            const { token } = response.data
+                body: JSON.stringify({
+                    username,
+                    password
+                })
+            }
+        )
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error('Invalid data')
+            }
+            return res.json()
+        })
+        .then((data) => {
+            if (!data.token) {
+                throw new Error('Invalid token')
+            }
             alert('Sesión iniciada correctamente')
-            localStorage.setItem("token", token)
-            setUser({ username })
-        } catch (error) {
-            console.error(error.response?.data || error.message)
-            alert(error.response?.data?.message || 'Error al iniciar sesión')
-        }
+            localStorage.setItem("token", data.token)
+            setUser({ username: data.username })
+            navigate('/')
+        })
+        .catch((err) => {
+            console.error(err)
+            alert(err.message)
+        })
     }
 
     useEffect(() => {
         const token = localStorage.getItem('token')
         if (!token) return;
     
-        fetch(import.meta.env.VITE_API_URL + '/api/v1/auth/me', {
+        fetch(urlMe, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
         .then((res) => {
             if (!res.ok) {
-                throw new Error('Token inválido o expirado')
+                throw new Error('Invalid token')
             }
             return res.json()
         })
         .then((data) => {
-            setUser(data[0])
+            setUser(data)
         })
         .catch((err) => {
             console.error(err)
@@ -101,7 +107,7 @@ const UserProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={{ user, setUser, username, setUsername, email, setEmail, password, setPassword, registerUser, loginUser, logoutUser }}>
+        <UserContext.Provider value={{ user, setUser, registerUser, loginUser, logoutUser }}>
             {children}
         </UserContext.Provider>
     )

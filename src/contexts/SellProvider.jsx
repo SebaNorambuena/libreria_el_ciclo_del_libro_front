@@ -4,10 +4,15 @@ import { createContext, useState } from 'react'
 export const SellContext = createContext()
 
 const SellProvider = ({children}) => {
-    const sellBook = async (name, author, category, img, price, description, stock, vendidos) => {
-        try {
-            const response = await axios.post(import.meta.env.VITE_API_URL +'/api/v1/sell_books',
-                {
+    const urlSell = import.meta.env.VITE_API_URL +'/api/v1/sell_books'
+    const sellBook = (name, author, category, img, price, description, stock, vendidos) => {
+        fetch(urlSell,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
                     name,
                     author,
                     category,
@@ -16,23 +21,19 @@ const SellProvider = ({children}) => {
                     description,
                     stock,
                     vendidos
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            const data = response.data
-            if (data?.error) {
-                alert(data.error)
-            } else {
-                alert('Libro publicado correctamente')
+                })
             }
-        }
-        catch (error) {
-            console.error(error.response?.data || error.message)
-        }
+        )
+        .then((data) => {
+            if (!data.ok) {
+                throw new Error('Invalid data')
+            }
+            alert('Libro publicado correctamente')
+        })
+        .catch((err) => {
+            console.error(err)
+            alert(err.message)
+        })
     }
     return (
         <SellContext.Provider value={{sellBook}}>

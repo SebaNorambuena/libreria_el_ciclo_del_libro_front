@@ -1,4 +1,3 @@
-import React from 'react'
 import useInput from "../hooks/UseInput"
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserProvider'
@@ -15,7 +14,6 @@ const Vender = () => {
     const [description, descriptionControl] = useInput("")
     const [stock, stockControl] = useInput("")
     const [vendidos, vendidosControl] = useInput("")
-    const vendedor = user?.username || "anónimo"
 
     const validarInput = (e) => {
         e.preventDefault()

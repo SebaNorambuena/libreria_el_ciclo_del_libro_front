@@ -1,6 +1,4 @@
-import React from 'react'
 import { useState, useEffect, createContext } from 'react'
-import axios from 'axios'
 
 export const ApiContext = createContext()
 
@@ -10,17 +8,10 @@ const ApiProvider = ({children}) => {
 
     const url = import.meta.env.VITE_API_URL + "/api/v1/books"
 
-    const getApi = async () => {
-        try {
-            const response = await axios.get(url)
-            setBooks(response.data)
-        } catch (error) {
-            console.log(error.response.data)
-        }
-    }
-
     useEffect(()=>{
-    getApi()
+        fetch(url)
+        .then(res => res.json())    
+        .then(data => setBooks(data))
     }, [])
 
     return (
